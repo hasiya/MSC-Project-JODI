@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <title>Title</title>
+{#      {{ codemirror.include_codemirror }}#}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href={{ url_for('static', filename='./bower_components/bootstrap/dist/css/bootstrap.min.css') }} rel="stylesheet" media="screen">
+      <link href={{ url_for('static', filename='css.css') }} rel="stylesheet" media="screen">
+      <link href={{ url_for('static', filename='./bower_components/codemirror/lib/codemirror.css') }} rel="stylesheet" media="screen">
+      <link href={{ url_for('static', filename='./NumberedTextarea/jquery.numberedtextarea.css') }} rel="stylesheet" media="screen">
+
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">JODI</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Bla</a></li>
+            <li><a href="#">Bla1</a></li>
+            <li><a href="#">Bla2</a></li>
+
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+                <div class="panel with-nav-tabs panel-info">
+                    <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1info" data-toggle="tab">CSV Coppy</a></li>
+                                <li><a href="#tab2info" data-toggle="tab">info 2</a></li>
+                                <li><a href="#tab3info" data-toggle="tab">Info 3</a></li>
+                                <li><a href="#tab4info" data-toggle="tab">info 4</a></li>
+                            </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1info">
+                                <textarea cols="60" rows="20" class="form-control" id="textarea" spellcheck="false"></textarea>
+{#                                <form method="POST">#}
+{#                                  {{ form.source_code }}#}
+{#                                </form>#}
+                            </div>
+                            <div class="tab-pane fade" id="tab2info">Info 2</div>
+                            <div class="tab-pane fade" id="tab3info">Info 3</div>
+                            <div class="tab-pane fade" id="tab4info">Info 4</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+{#            <script>#}
+{#                $('textarea').numberedtextarea();#}
+{#            </script>#}
+
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+
+    <script src={{ url_for('static', filename='./bower_components/codemirror/lib/codemirror.js') }}></script>
+
+    <script src={{ url_for('static', filename='./bower_components/jquery/dist/jquery.min.js') }}></script>
+    <script src={{ url_for('static', filename='./bower_components/bootstrap/dist/js/bootstrap.min.js') }}></script>
+    <script src={{ url_for('static', filename='./bower_components/d3/d3.min.js') }}></script>
+
+    <script src={{ url_for('static', filename='NumberedTextarea/jquery.numberedtextarea.js') }}></script>
+
+    <script src={{ url_for('static', filename='main.js') }}></script>
+  </body>
+</html>

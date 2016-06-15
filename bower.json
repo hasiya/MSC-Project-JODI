@@ -1,0 +1,23 @@
+{
+  "name": "Flask_D3",
+  "authors": [
+    "Rajitha Hasith"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.2.0",
+    "jquery": "2.1.1",
+    "d3": "3.4.11",
+    "codemirror": "5.15.2"
+  }
+}
