@@ -29,7 +29,7 @@ def index():
 
 @app.route('/csv_data')
 def csvData():
-    data  = request.args.get()
+    data  = request.args.get("data")
     logging.warning(data)
 
 

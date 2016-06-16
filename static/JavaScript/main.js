@@ -37,6 +37,36 @@ function linesMatch(lines) {
 //
 // });
 
+function processText(text) {
+    var lines = text.split('\n');
+    var headers;
+    var data = [];
+    var i=1;
+
+    lines.forEach(function (l) {
+        if(i==1){
+            headers = l.split(",");
+            i++;
+        }
+        else{
+            var item = {};
+            values = l.split(",");
+            headers.forEach(function (h) {
+                item[h] = values[headers.indexOf(h)];
+            });
+
+            data.push(item);
+            i++;
+        }
+
+
+    });
+
+    return data;
+
+}
+
+
 function csv_onchange() {
    // var textarea = document.getElementById("CSVarea");
     csvText = editor.getValue();
@@ -44,14 +74,8 @@ function csv_onchange() {
 
     if(lines.length > 1){
         if(linesMatch(lines)){
-            $.get(
-                url="/csv_data",
-                data = csvText,
-                success = function () {
-                    console.log("DONE")
-                },
-                dataType="json"
-            );
+            data = processText(csvText);
+            console.log(data);
 
         }
         else {
