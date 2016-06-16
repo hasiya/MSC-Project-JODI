@@ -5,9 +5,8 @@
 {#      {{ codemirror.include_codemirror }}#}
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link href={{ url_for('static', filename='./bower_components/bootstrap/dist/css/bootstrap.min.css') }} rel="stylesheet" media="screen">
-      <link href={{ url_for('static', filename='css.css') }} rel="stylesheet" media="screen">
+      <link href={{ url_for('static', filename='./CSS/Main.css') }} rel="stylesheet" media="screen">
       <link href={{ url_for('static', filename='./bower_components/codemirror/lib/codemirror.css') }} rel="stylesheet" media="screen">
-      <link href={{ url_for('static', filename='./NumberedTextarea/jquery.numberedtextarea.css') }} rel="stylesheet" media="screen">
 
   </head>
   <body>
@@ -23,7 +22,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">JODI</a>
+          <a class="navbar-brand" href="#"><strong>JODI</strong></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -45,8 +44,8 @@
                 <div class="panel with-nav-tabs panel-info">
                     <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1info" data-toggle="tab">CSV Coppy</a></li>
-                                <li><a href="#tab2info" data-toggle="tab">info 2</a></li>
+                                <li class="active"><a href="#tab1info" data-toggle="tab">CSV Copy</a></li>
+                                <li><a href="#tab2info" data-toggle="tab">PDF</a></li>
                                 <li><a href="#tab3info" data-toggle="tab">Info 3</a></li>
                                 <li><a href="#tab4info" data-toggle="tab">info 4</a></li>
                             </ul>
@@ -54,12 +53,19 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="tab1info">
-                                <textarea cols="60" rows="20" class="form-control" id="textarea" spellcheck="false"></textarea>
+
+                                <textarea cols="60" rows="20" class="form-control" id="CSVarea" spellcheck="false"></textarea>
+                                <button onclick="csv_onchange()">Process</button>
 {#                                <form method="POST">#}
 {#                                  {{ form.source_code }}#}
 {#                                </form>#}
                             </div>
-                            <div class="tab-pane fade" id="tab2info">Info 2</div>
+                            <div class="tab-pane fade" id="tab2info">
+                                <form action="" method=post enctype=multipart/form-data>
+                                  <p><input type=file name=file>
+                                     <input type=submit value=Upload>
+                                </form>
+                            </div>
                             <div class="tab-pane fade" id="tab3info">Info 3</div>
                             <div class="tab-pane fade" id="tab4info">Info 4</div>
                         </div>
@@ -79,13 +85,11 @@
 
 
     <script src={{ url_for('static', filename='./bower_components/codemirror/lib/codemirror.js') }}></script>
-
+    <script src={{ url_for('static', filename='./bower_components/codemirror/addon/display/placeholder.js') }}></script>
     <script src={{ url_for('static', filename='./bower_components/jquery/dist/jquery.min.js') }}></script>
     <script src={{ url_for('static', filename='./bower_components/bootstrap/dist/js/bootstrap.min.js') }}></script>
     <script src={{ url_for('static', filename='./bower_components/d3/d3.min.js') }}></script>
-
-    <script src={{ url_for('static', filename='NumberedTextarea/jquery.numberedtextarea.js') }}></script>
-
-    <script src={{ url_for('static', filename='main.js') }}></script>
+    <script src={{ url_for('static', filename='./libs/dropzone.js') }}></script>
+    <script src={{ url_for('static', filename='./JavaScript/main.js') }}></script>
   </body>
 </html>
