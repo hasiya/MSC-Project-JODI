@@ -2,6 +2,10 @@
     align-items: center;
 }
 
+.line{
+    background: #ff8080;
+}
+
 /*div.numberedtextarea-wrapper { position: relative; }*/
 
 /*div.numberedtextarea-wrapper textarea {*/

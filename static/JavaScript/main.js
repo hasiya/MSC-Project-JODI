@@ -14,9 +14,7 @@ function TextAreaSetup() {
         lineWrapping:true,
         mode:"Plain Text",
         placeholder: "Paste your CSV file content or drag and drop the file here...",
-        change: function(){
-                    console.log("hello")
-                }
+        gutters:["background"]
 
     });
 }
@@ -24,12 +22,22 @@ function TextAreaSetup() {
 
 
 function linesMatch(lines) {
+
+    var lineMatch = {
+        "lineMatch": true,
+        "lineNum":0
+    };
+    // var linesMatch = true;
+    var lineNum = 1;
     lines.forEach(function (l) {
         if(l.split(',').length != lines[0].split(',').length){
-            return false;
+            lineMatch["lineMatch"] = false;
+            lineMatch["lineNum"] = lineNum;
+            return lineMatch;
         }
+        lineNum++;
     });
-    return true;
+    return lineMatch;
 }
 
 //
@@ -37,29 +45,43 @@ function linesMatch(lines) {
 //
 // });
 
+
+
 function processText(text) {
     var lines = text.split('\n');
     var headers;
-    var data = [];
+    var data = {
+        "header":[],
+        "items":[]
+    };
     var i=1;
+
+    var headerTypes =[];
 
     lines.forEach(function (l) {
         if(i==1){
             headers = l.split(",");
+            data["header"]= headers;
             i++;
         }
         else{
             var item = {};
+            var tmpTypes = []
             values = l.split(",");
             headers.forEach(function (h) {
                 item[h] = values[headers.indexOf(h)];
+
+                if(values[headers.indexOf(h)].isNumeric()){
+                    tmpTypes.push("number");
+                }
+                else{
+                    tmpTypes.push("string");
+                }
             });
 
-            data.push(item);
+            data["items"].push(item);
             i++;
         }
-
-
     });
 
     return data;
@@ -73,23 +95,33 @@ function csv_onchange() {
     lines = csvText.split('\n');
 
     if(lines.length > 1){
-        if(linesMatch(lines)){
-            data = processText(csvText);
-            console.log(data);
+        var lineMatch = linesMatch(lines);
+        if(lineMatch["lineMatch"]){
+            var data = processText(csvText);
+
+            var Message = $("#message");
+            Message.html("Done!");
+            console.log(data["items"]);
+            
+            $("#panel").css("visibility","visible");
+
 
         }
         else {
+            // var myeditor = $("#editor .CodeMirror");
+            // console.log(myeditor);
+            // console.log(myeditor[0].CodeMirror);
+            // myCodeMirror = myeditor[0].CodeMirror;
+            //
+            // // myCodeMirror.setLineClass(lineMatch["lineNum"], 'background', '#ff8080');
+            // // myCodeMirror.setGutterMarker(lineMatch["lineNum"], "background", '#ff8080');
+            // myCodeMirror.addLineClass(lineMatch["lineNum"], "background", 'line');
+
+            var Message = $("#message");
+            Message.html("There is the problem in line: "+ lineMatch["lineNum"]);
+
+            console.log("There is the problem in line: "+ lineMatch["lineNum"])
 
         }
     }
 }
-
-// editor.on('focus',function(){alert('Focus');});
-// editor.focus();
- // textarea.on('change',csv_onchange());
- // textarea.onKeyEvent(csv_onchange());
-
-
-
-
-

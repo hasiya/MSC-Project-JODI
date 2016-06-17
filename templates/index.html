@@ -39,32 +39,39 @@
     </nav><!-- /.navbar -->
 
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
                 <div class="panel with-nav-tabs panel-info">
                     <div class="panel-heading">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1info" data-toggle="tab">CSV Copy</a></li>
-                                <li><a href="#tab2info" data-toggle="tab">PDF</a></li>
+                                <li class="active"><a href="#tabCSV" data-toggle="tab">CSV Copy</a></li>
+                                <li><a href="#tabPDF" data-toggle="tab">PDF</a></li>
                                 <li><a href="#tab3info" data-toggle="tab">Info 3</a></li>
                                 <li><a href="#tab4info" data-toggle="tab">info 4</a></li>
                             </ul>
                     </div>
                     <div class="panel-body">
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="tab1info">
+                            <div class="tab-pane fade in active" id="tabCSV">
 
-                                <textarea cols="60" rows="20" class="form-control" id="CSVarea" spellcheck="false"></textarea>
+                                <div id="editor">
+                                    <textarea cols="60" rows="20" class="form-control" id="CSVarea" spellcheck="false"></textarea>
+                                </div>
                                 <button onclick="csv_onchange()">Process</button>
-{#                                <form method="POST">#}
-{#                                  {{ form.source_code }}#}
-{#                                </form>#}
+                                <label id="message"></label>
+
+                                <div id="panel" style="visibility: hidden">
+                                    test
+                                </div>
+
                             </div>
-                            <div class="tab-pane fade" id="tab2info">
+                            <div class="tab-pane fade" id="tabPDF">
+
                                 <form action="" method=post enctype=multipart/form-data>
                                   <p><input type=file name=file>
                                      <input type=submit value=Upload>
                                 </form>
+
                             </div>
                             <div class="tab-pane fade" id="tab3info">Info 3</div>
                             <div class="tab-pane fade" id="tab4info">Info 4</div>
@@ -80,7 +87,7 @@
 
 
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
     </div>
 
 
