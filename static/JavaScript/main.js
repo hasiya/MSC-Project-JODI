@@ -65,6 +65,7 @@ function processText(text) {
             i++;
         }
             
+
         else{
             
             var item = {};
