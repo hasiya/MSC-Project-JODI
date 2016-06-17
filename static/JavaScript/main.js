@@ -64,7 +64,9 @@ function processText(text) {
             data["header"]= headers;
             i++;
         }
+            
         else{
+            
             var item = {};
             var tmpTypes = []
             values = l.split(",");
