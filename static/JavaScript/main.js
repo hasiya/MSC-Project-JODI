@@ -64,7 +64,7 @@ function processText(text) {
             data["header"]= headers;
             i++;
         }
-            
+
         else{
             
             var item = {};
@@ -73,13 +73,14 @@ function processText(text) {
             headers.forEach(function (h) {
                 item[h] = values[headers.indexOf(h)];
 
-                if(values[headers.indexOf(h)].isNumeric()){
-                    tmpTypes.push("number");
-                }
-                else{
-                    tmpTypes.push("string");
-                }
+                // if(values[headers.indexOf(h)].isNumeric()){
+                //     tmpTypes.push("number");
+                // }
+                // else{
+                //     tmpTypes.push("string");
+                // }
             });
+
 
             data["items"].push(item);
             i++;
@@ -101,11 +102,28 @@ function csv_onchange() {
         if(lineMatch["lineMatch"]){
             var data = processText(csvText);
 
+            //noinspection JSDuplicatedDeclaration
             var Message = $("#message");
             Message.html("Done!");
             console.log(data["items"]);
-            
-            $("#panel").css("visibility","visible");
+
+            var panel = $("#panel");
+            panel.css("visibility", "visible");
+
+            var headers = data["header"];
+            headers.forEach(function (header) {
+                panel.append(
+                    "<div class='row'>" +
+                    "<div class='col-md-4'><lable>" + header + "</lable></div>" +
+                    "<div class='col-md-4'></div>" +
+                    "<div class='col-md-4'></div>" +
+                    "</div> "
+
+                    // "<div class='col-md-4'><lable>"+header+"</lable></div>"
+
+
+                );
+            });
 
 
         }
