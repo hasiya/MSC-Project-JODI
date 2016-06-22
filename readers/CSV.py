@@ -1,7 +1,19 @@
 import csv
+# import codecs
 import StringIO
-import io
+# import io
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
+# def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
+#     csv_reader = csv.reader(utf8_data, dialect=dialect, **kwargs)
+#     for row in csv_reader:
+#         yield [unicode(cell, 'utf-8') for cell in row]
+#
+# def csv_unireader(f, encoding="utf-8"):
+#     for row in csv.reader(codecs.iterencode(codecs.iterdecode(f, encoding), "utf-8")):
+#         yield [e.decode("utf-8") for e in row]
 
 def read(string):
     try:
