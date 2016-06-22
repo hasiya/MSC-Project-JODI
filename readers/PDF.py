@@ -9,7 +9,6 @@ from pdfminer.converter import TextConverter, HTMLConverter
 
 from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
-import re
 
 
 def readText(fname, pages=None):

@@ -13,8 +13,7 @@ function TextAreaSetup() {
         lineNumbers: true,
         lineWrapping:true,
         mode:"Plain Text",
-        placeholder: "Paste your CSV file content or drag and drop the file here...",
-        gutters:["background"]
+        placeholder: "Paste your CSV file content or drag and drop the file here..."
 
     });
 }

@@ -1,6 +1,6 @@
-from flask import Flask, request, redirect, Response, render_template
+from flask import Flask, request, Response, render_template
 import json
-from werkzeug.utils import secure_filename
+# from werkzeug.utils import secure_filename
 import readers.CSV as csv
 import readers.PDF as pdf
 import logging
@@ -14,7 +14,7 @@ import logging
 #             ('display','placeholder'),
 # )
 
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 app = Flask(__name__)
@@ -34,11 +34,12 @@ def csvdata():
     dict_data = {}
 
     if request.method == 'POST':
-        data  = request.get_data()
+        data = request.values['data']
+        logging.warning(request)
         dict_data = csv.read(data)
 
     return Response(
-        json.dump(dict_data),
+        json.dumps(dict_data),
         mimetype='application/json',
         headers={
             'Cache-Control': 'no-cache',
