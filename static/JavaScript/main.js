@@ -116,7 +116,7 @@ function csv_onchange() {
                     "<div class='col-md-4'><lable>" + header + "</lable></div>" +
                     "<div class='col-md-4'></div>" +
                     "<div class='col-md-4'></div>" +
-                    "</div> "
+                    "</div>"
 
                     // "<div class='col-md-4'><lable>"+header+"</lable></div>"
 
