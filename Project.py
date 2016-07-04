@@ -1,9 +1,11 @@
-from flask import Flask, request, Response, render_template
 import json
+
+from flask import Flask, request, Response, render_template
 # from werkzeug.utils import secure_filename
 import readers.CSV as csv
 import readers.PDF as pdf
 import logging
+
 #
 # SECRET_KEY = 'secret!'
 # # mandatory
@@ -16,17 +18,17 @@ import logging
 
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
-
 app = Flask(__name__)
-#
+
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+
 @app.route('/')
 def index():
-        return render_template("index.html")
+    return render_template("index.html")
 
 
 @app.route('/csv_data', methods=['GET', 'POST'])

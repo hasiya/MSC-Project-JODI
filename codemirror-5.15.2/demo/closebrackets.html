@@ -9,24 +9,27 @@
 <script src="../addon/edit/closebrackets.js"></script>
 <script src="../mode/javascript/javascript.js"></script>
 <style type="text/css">
-      .CodeMirror {border-top: 1px solid #888; border-bottom: 1px solid #888;}
-    </style>
+    .CodeMirror {
+        border-top: 1px solid #888;
+        border-bottom: 1px solid #888;
+    }
+</style>
 <div id=nav>
-  <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+    <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
 
-  <ul>
-    <li><a href="../index.html">Home</a>
-    <li><a href="../doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
-  </ul>
-  <ul>
-    <li><a class=active href="#">Closebrackets</a>
-  </ul>
+    <ul>
+        <li><a href="../index.html">Home</a>
+        <li><a href="../doc/manual.html">Manual</a>
+        <li><a href="https://github.com/codemirror/codemirror">Code</a>
+    </ul>
+    <ul>
+        <li><a class=active href="#">Closebrackets</a>
+    </ul>
 </div>
 
 <article>
-<h2>Closebrackets Demo</h2>
-<form><textarea id="code" name="code">function Grid(width, height) {
+    <h2>Closebrackets Demo</h2>
+    <form><textarea id="code" name="code">function Grid(width, height) {
   this.width = width;
   this.height = height;
   this.cells = new Array(width * height);
@@ -47,6 +50,6 @@ Grid.prototype.moveValue = function(from, to) {
 };</textarea></form>
 
     <script type="text/javascript">
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {autoCloseBrackets: true});
+        var editor = CodeMirror.fromTextArea(document.getElementById("code"), {autoCloseBrackets: true});
     </script>
-  </article>
+</article>

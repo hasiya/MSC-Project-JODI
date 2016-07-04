@@ -8,26 +8,34 @@
 <script src="../lib/codemirror.js"></script>
 <script src="../mode/javascript/javascript.js"></script>
 <style type="text/css">
-      .breakpoints {width: .8em;}
-      .breakpoint { color: #822; }
-      .CodeMirror {border: 1px solid #aaa;}
-    </style>
-<div id=nav>
-  <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+    .breakpoints {
+        width: .8em;
+    }
 
-  <ul>
-    <li><a href="../index.html">Home</a>
-    <li><a href="../doc/manual.html">Manual</a>
-    <li><a href="https://github.com/codemirror/codemirror">Code</a>
-  </ul>
-  <ul>
-    <li><a class=active href="#">Breakpoint</a>
-  </ul>
+    .breakpoint {
+        color: #822;
+    }
+
+    .CodeMirror {
+        border: 1px solid #aaa;
+    }
+</style>
+<div id=nav>
+    <a href="http://codemirror.net"><h1>CodeMirror</h1><img id=logo src="../doc/logo.png"></a>
+
+    <ul>
+        <li><a href="../index.html">Home</a>
+        <li><a href="../doc/manual.html">Manual</a>
+        <li><a href="https://github.com/codemirror/codemirror">Code</a>
+    </ul>
+    <ul>
+        <li><a class=active href="#">Breakpoint</a>
+    </ul>
 </div>
 
 <article>
-<h2>Breakpoint Demo</h2>
-<form><textarea id="code" name="code">
+    <h2>Breakpoint Demo</h2>
+    <form><textarea id="code" name="code">
 var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
   lineNumbers: true,
   gutters: ["CodeMirror-linenumbers", "breakpoints"]
@@ -45,8 +53,8 @@ function makeMarker() {
 }
 </textarea></form>
 
-<p>Click the line-number gutter to add or remove 'breakpoints'.</p>
+    <p>Click the line-number gutter to add or remove 'breakpoints'.</p>
 
     <script>eval(document.getElementById("code").value);</script>
 
-  </article>
+</article>

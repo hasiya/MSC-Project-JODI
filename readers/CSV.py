@@ -3,6 +3,7 @@ import csv
 import StringIO
 # import io
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 

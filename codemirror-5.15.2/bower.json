@@ -1,6 +1,9 @@
 {
   "name": "codemirror",
-  "main": ["lib/codemirror.js", "lib/codemirror.css"],
+  "main": [
+    "lib/codemirror.js",
+    "lib/codemirror.css"
+  ],
   "ignore": [
     "**/.*",
     "node_modules",
