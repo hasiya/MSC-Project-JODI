@@ -23,7 +23,9 @@ def read(string):
             else:
                 line_as_dict = {}
                 for h in headers:
-                    line_as_dict[h] = line[headers.index(h)]
+                    new_h = h
+                    new_h = new_h.lstrip().rstrip()
+                    line_as_dict[new_h] = line[headers.index(h)]
                     # print(h, ":",line[h])
                 Data_dict.append(line_as_dict)
                 i += 1
