@@ -6,6 +6,8 @@ import readers.CSV as csv
 import readers.PDF as pdf
 import logging
 
+import connectMongo as mongoc
+
 #
 # SECRET_KEY = 'secret!'
 # # mandatory
@@ -49,6 +51,30 @@ def csvdata():
         }
     )
 
+
+@app.route('/create_dataset', methods=['GET', 'POST', "OPTIONS"])
+def createcoll():
+    if request.method == 'POST':
+        req = request
+        dataDict = request.form
+        d = dict(dataDict)
+        d = dataDict["collectionName"]
+        b = d["collectionData"]
+        data = json.dump(dataDict)
+        # mongoc.createCollection(dataDict.)
+        # data = request.val
+        logging.warning(dataDict)
+
+    return Response(
+        json.dumps({
+            "message": "success"
+        }),
+        mimetype='application/json',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        }
+    )
 
 @app.route('/pdf_data', methods=['POST', 'GET'])
 def pdfdata():
