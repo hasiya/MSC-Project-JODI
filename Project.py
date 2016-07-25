@@ -55,15 +55,18 @@ def csvdata():
 @app.route('/create_dataset', methods=['GET', 'POST', "OPTIONS"])
 def createcoll():
     if request.method == 'POST':
+        a = []
         req = request
-        dataDict = request.form
-        d = dict(dataDict)
-        d = dataDict["collectionName"]
-        b = d["collectionData"]
-        data = json.dump(dataDict)
-        # mongoc.createCollection(dataDict.)
+        name_s = request.get_data()
+        data = json.loads(name_s)
+
+        # d = dict(dataDict)
+        # d = dataDict["collectionName"]
+        # b = d["collectionData"]
+        # datat = json.dump(name)
+        mongoc.createCollection(data["collectionName"], data["collectionData"])
         # data = request.val
-        logging.warning(dataDict)
+        logging.warning(data)
 
     return Response(
         json.dumps({

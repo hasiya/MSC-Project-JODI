@@ -14,6 +14,7 @@ def createCollection(collectionName, datasetObject):
     db = connect_db()
     collection = db[collectionName]
 
-    db[collectionName].insert_one(datasetObject)
+    # for obj in datasetObject:
+    db[collectionName].insert_many(datasetObject)
 
 # createCollection("test2", {'a': 1})
