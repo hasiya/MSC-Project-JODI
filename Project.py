@@ -34,7 +34,7 @@ def index():
 
 
 @app.route('/csv_data', methods=['GET', 'POST'])
-def csvdata():
+def csv_data():
     dict_data = {}
 
     if request.method == 'POST':
@@ -52,26 +52,19 @@ def csvdata():
     )
 
 
-@app.route('/create_dataset', methods=['GET', 'POST', "OPTIONS"])
-def createcoll():
+@app.route('/insert_dataset', methods=['GET', 'POST'])
+def insert_data_set():
+    response = {}
     if request.method == 'POST':
-        a = []
-        req = request
         name_s = request.get_data()
         data = json.loads(name_s)
 
-        # d = dict(dataDict)
-        # d = dataDict["collectionName"]
-        # b = d["collectionData"]
-        # datat = json.dump(name)
-        mongoc.createCollection(data["collectionName"], data["collectionData"])
-        # data = request.val
-        logging.warning(data)
+        response = mongoc.insert_data(data["collectionName"], data["collectionData"])
+
+        # logging.warning(data)
 
     return Response(
-        json.dumps({
-            "message": "success"
-        }),
+        json.dumps(response),
         mimetype='application/json',
         headers={
             'Cache-Control': 'no-cache',
@@ -79,8 +72,30 @@ def createcoll():
         }
     )
 
+
+@app.route('/check_dataset', methods=['GET', 'POST'])
+def check_data_set():
+    response = {}
+    if request.method == 'POST':
+        name_s = request.get_data()
+        data = json.loads(name_s)
+
+        response = mongoc.check_data_set(data)
+
+        # logging.warning(data)
+
+    return Response(
+        json.dumps(response),
+        mimetype='application/json',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        }
+    )
+
+
 @app.route('/pdf_data', methods=['POST', 'GET'])
-def pdfdata():
+def pdf_data():
     pdfText = ""
     if request.method == 'POSt':
         data = request.get_data()
