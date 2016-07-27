@@ -59,8 +59,8 @@ def insert_data_set():
         name_s = request.get_data()
         data = json.loads(name_s)
 
-        response = mongo.insert_data(data["collectionName"], data["collectionData"])
-        # response = elastic.insert_data(data["collectionName"], data["collectionData"])
+        # response = mongo.insert_data(data["collectionName"], data["collectionData"])
+        response = elastic.insert_data(data["collectionName"], data["collectionData"])
 
 
         # logging.warning(data)
@@ -74,6 +74,32 @@ def insert_data_set():
         }
     )
 
+
+@app.route('/search_dataset/<search_term>', methods=['GET'])
+def get_data(search_term):
+    hits = elastic.search_dataset(search_term)
+
+    if (hits):
+        return Response(
+            json.dump(hits),
+            mimetype='application/json',
+            headers={
+                'Cache-Control': 'no-cache',
+                'Access-Control-Allow-Origin': '*'
+            }
+        )
+    else:
+        return Response(
+            json.dump({
+                "error_code": 1,
+                "message": "No data."
+            }),
+            mimetype='application/json',
+            headers={
+                'Cache-Control': 'no-cache',
+                'Access-Control-Allow-Origin': '*'
+            }
+        )
 
 @app.route('/check_dataset', methods=['GET', 'POST'])
 def check_data_set():

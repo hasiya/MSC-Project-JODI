@@ -43,8 +43,10 @@ def search_dataset(search_term):
             }
         }
     })
+    hits = result['hits']['hits']
 
-    # print (result)
+    print (hits)
+    return hits
 
 
 search_dataset("I voted Yes last time and I")
