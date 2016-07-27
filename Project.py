@@ -1,12 +1,12 @@
 import json
-
-from flask import Flask, request, Response, render_template
-# from werkzeug.utils import secure_filename
-import readers.CSV as csv
-import readers.PDF as pdf
 import logging
 
-import connectMongo as mongoc
+from flask import Flask, request, Response, render_template
+
+import readers.CSV as csv
+import readers.PDF as pdf
+from connections import mongo
+from connections import elastic
 
 #
 # SECRET_KEY = 'secret!'
@@ -59,7 +59,9 @@ def insert_data_set():
         name_s = request.get_data()
         data = json.loads(name_s)
 
-        response = mongoc.insert_data(data["collectionName"], data["collectionData"])
+        response = mongo.insert_data(data["collectionName"], data["collectionData"])
+        # response = elastic.insert_data(data["collectionName"], data["collectionData"])
+
 
         # logging.warning(data)
 
@@ -80,7 +82,7 @@ def check_data_set():
         name_s = request.get_data()
         data = json.loads(name_s)
 
-        response = mongoc.check_data_set(data)
+        response = mongo.check_data_set(data)
 
         # logging.warning(data)
 
