@@ -4,6 +4,7 @@ import json
 import datetime
 
 res = requests.get('http://localhost:9200')
+
 es = elasticSearch([{'host': 'localhost', 'port': 9200}])
 
 db_dateTime = "date_time"
@@ -13,18 +14,18 @@ db_headers = 'headers'
 index = 'csv_data'
 
 
-def insert_data(datasetName, dataset, headers):
-    dataset_name_exist = es.exists(index=index, doc_type='data_sets', id=datasetName)
+def insert_data(dataset_name, dataset, headers):
+    dataset_name_exist = es.exists(index=index, doc_type='data_sets', id=dataset_name)
 
     all_data = {
         db_dateTime: datetime.datetime.utcnow(),
-        db_datasetName: datasetName,
+        db_datasetName: dataset_name,
         db_headers: headers,
         db_dataset: dataset
 
     }
     if not dataset_name_exist:
-        es.index(index=index, doc_type='data_sets', id=datasetName, body=all_data)
+        es.index(index=index, doc_type='data_sets', id=dataset_name, body=all_data)
 
         return {
             "error_code": 0,
