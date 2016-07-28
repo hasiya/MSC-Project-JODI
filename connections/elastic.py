@@ -9,23 +9,26 @@ es = elasticSearch([{'host': 'localhost', 'port': 9200}])
 db_dateTime = "date_time"
 db_datasetName = "dataset_name"
 db_dataset = "dataset"
+db_headers = 'headers'
 index = 'csv_data'
 
 
-def insert_data(datasetName, dataset):
+def insert_data(datasetName, dataset, headers):
     dataset_name_exist = es.exists(index=index, doc_type='data_sets', id=datasetName)
 
     all_data = {
         db_dateTime: datetime.datetime.utcnow(),
         db_datasetName: datasetName,
+        db_headers: headers,
         db_dataset: dataset
+
     }
     if not dataset_name_exist:
         es.index(index=index, doc_type='data_sets', id=datasetName, body=all_data)
 
         return {
             "error_code": 0,
-            "message": "Successfully data added to mongo"
+            "message": "Successfully data added to elasticsearch"
         }
 
     else:
@@ -45,8 +48,14 @@ def search_dataset(search_term):
     })
     hits = result['hits']['hits']
 
-    print (hits)
-    return hits
+    # print (hits)
+    if (hits):
+        return hits
+    else:
+        # return {
+        #     "error_code": 1,
+        #     "message": "No data."
+        # }
+        return []
 
-
-search_dataset("I voted Yes last time and I")
+# search_dataset("I voted Yes last time and I")
