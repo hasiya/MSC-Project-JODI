@@ -75,8 +75,21 @@ def insert_data_set():
     )
 
 
+@app.route('/get_dataset/<id>', methods=['GET'])
+def get_data(id):
+    doc = elastic.get_dataset(id)
+
+    return Response(
+        json.dumps(doc),
+        mimetype='application/json',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        })
+
+
 @app.route('/search_dataset/<search_term>', methods=['GET'])
-def get_data(search_term):
+def search_data(search_term):
     hits = elastic.search_dataset(search_term)
 
     return Response(
