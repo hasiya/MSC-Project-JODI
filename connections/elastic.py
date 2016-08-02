@@ -9,12 +9,14 @@ es = elasticSearch([{'host': 'localhost', 'port': 9200}])
 
 db_dateTime = "date_time"
 db_datasetName = "dataset_name"
+db_personName = "person_name"
+db_dataSource = "data_source"
 db_dataset = "dataset"
 db_headers = 'headers'
 index = 'csv_data'
 
 
-def insert_data(dataset_name, dataset, headers):
+def insert_data(dataset_info, dataset, headers):
     index_exsist = es.indices.exists(index)
 
     if not index_exsist:
@@ -23,6 +25,12 @@ def insert_data(dataset_name, dataset, headers):
                 "data_sets": {
                     "properties": {
                         "dataset_name": {
+                            "type": "string"
+                        },
+                        "person_name": {
+                            "type": "string"
+                        },
+                        "data_source": {
                             "type": "string"
                         },
                         "date_time": {
@@ -42,17 +50,19 @@ def insert_data(dataset_name, dataset, headers):
 
         es.indices.create(index=index, body=mapping)
 
-    dataset_name_exist = es.exists(index=index, doc_type='data_sets', id=dataset_name)
+    dataset_name_exist = es.exists(index=index, doc_type='data_sets', id=dataset_info['dataset_name'])
 
     all_data = {
         db_dateTime: datetime.datetime.now(),
-        db_datasetName: dataset_name,
+        db_datasetName: dataset_info['dataset_name'],
+        db_personName: dataset_info['person_name'],
+        db_dataSource: dataset_info['data_source'],
         db_headers: headers,
         db_dataset: dataset
 
     }
     if not dataset_name_exist:
-        es.index(index=index, doc_type='data_sets', id=dataset_name, body=all_data)
+        es.index(index=index, doc_type='data_sets', id=dataset_info['dataset_name'], body=all_data)
 
         return {
             "error_code": 0,

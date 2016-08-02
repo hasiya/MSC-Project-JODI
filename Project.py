@@ -60,7 +60,7 @@ def insert_data_set():
         data = json.loads(name_s)
 
         # response = mongo.insert_data(data["collectionName"], data["collectionData"])
-        response = elastic.insert_data(data["collectionName"], data["collectionData"], data["headers"])
+        response = elastic.insert_data(data["datasetInfo"], data["DataSet"], data["headers"])
 
 
         # logging.warning(data)
