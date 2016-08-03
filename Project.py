@@ -7,6 +7,7 @@ import readers.CSV as csv
 import readers.PDF as pdf
 from connections import mongo
 from connections import elastic
+from connections import api_call
 
 #
 # SECRET_KEY = 'secret!'
@@ -86,6 +87,21 @@ def get_data(id):
             'Cache-Control': 'no-cache',
             'Access-Control-Allow-Origin': '*'
         })
+
+
+@app.route('/get_api_data', methods=['GET'])
+def get_ai_data():
+    if request.method == 'GET':
+        url = request.query_string
+        data = api_call.get_api_content(url)
+
+        return Response(
+            json.dumps(data),
+            mimetype='application/json',
+            headers={
+                'Cache-Control': 'no-cache',
+                'Access-Control-Allow-Origin': '*'
+            })
 
 
 @app.route('/search_dataset/<search_term>', methods=['GET'])
