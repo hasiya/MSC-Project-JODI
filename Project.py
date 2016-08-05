@@ -155,6 +155,19 @@ def search_data(search_term):
         })
 
 
+@app.route('/get_all_dataset', methods=['GET'])
+def get_all_data():
+    hits = elastic.get_all_datasets()
+
+    return Response(
+        json.dumps(hits),
+        mimetype='application/json',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        })
+
+
 @app.route('/check_dataset', methods=['GET', 'POST'])
 def check_data_set():
     response = {}
@@ -191,7 +204,6 @@ def pdf_data():
             'Access-Control-Allow-Origin': '*'
         }
     )
-
 
 if __name__ == '__main__':
     app.run()

@@ -179,6 +179,9 @@ def search_dataset(search_term):
                 }
             }
         })
+
+        # result2 = es.search(index=index, doc_type='data_sets', body={})
+
         hits = result['hits']['hits']
 
         # print (hits)
@@ -194,4 +197,28 @@ def search_dataset(search_term):
     else:
         return []
 
+
+def get_all_datasets():
+    index_exsist = es.indices.exists(index)
+
+    if index_exsist:
+
+        result = es.search(index=index, doc_type='data_sets', body={})
+
+        # result2 = es.search(index=index, doc_type='data_sets', body={})
+
+        hits = result['hits']['hits']
+
+        # print (hits)
+        if (hits):
+            return hits
+        else:
+            # return {
+            #     "error_code": 1,
+            #     "message": "No data."
+            # }
+            return []
+
+    else:
+        return []
 # search_dataset("I voted Yes last time and I")
