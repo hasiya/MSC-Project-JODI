@@ -61,7 +61,31 @@ def insert_data_set():
         data = json.loads(name_s)
 
         # response = mongo.insert_data(data["collectionName"], data["collectionData"])
-        response = elastic.insert_data(data["datasetInfo"], data["DataSet"], data["headers"])
+        response = elastic.insert_data(data["datasetInfo"], data["DataSet"], data["headers"], data["apiData"])
+
+
+        # logging.warning(data)
+
+    return Response(
+        json.dumps(response),
+        mimetype='application/json',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        }
+    )
+
+
+@app.route('/insert_api', methods=['GET', 'POST'])
+def insert_api():
+    response = {}
+    if request.method == 'POST':
+        name_s = request.get_data()
+        data = json.loads(name_s)
+
+        # response = mongo.insert_data(data["collectionName"], data["collectionData"])
+        response = elastic.insert_api(data["datasetInfo"], data["apiData"], data["apiUrl"], data["dataPath"],
+                                      data["apiType"])
 
 
         # logging.warning(data)
@@ -102,6 +126,20 @@ def get_ai_data():
                 'Cache-Control': 'no-cache',
                 'Access-Control-Allow-Origin': '*'
             })
+
+
+@app.route('/delete_dataset/<dataset_id>')
+def delete_data(dataset_id):
+    # if request.method == "DELETE":
+    response = elastic.delete_dataset(dataset_id)
+
+    return Response(
+        json.dumps(response),
+        mimetype='application/json',
+        headers={
+            'Cache-Control': 'no-cache',
+            'Access-Control-Allow-Origin': '*'
+        })
 
 
 @app.route('/search_dataset/<search_term>', methods=['GET'])
