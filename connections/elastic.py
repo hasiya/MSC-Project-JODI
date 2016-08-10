@@ -153,7 +153,7 @@ def delete_dataset(dataset_name):
         except elasticException as err:
             result = err
 
-        if result.args[0]:
+        if hasattr(result, 'args'):
 
             if result.args[0] == 404:
                 return {
