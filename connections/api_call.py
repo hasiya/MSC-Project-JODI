@@ -14,5 +14,3 @@ def get_api_content(url):
         print 'Got an error code:', e
 
     return data
-
-# get_api_content('http://data.aberdeencity.gov.uk/OpenDataService/TemporaryTrafficOrderReport/json')
