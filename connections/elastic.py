@@ -1,10 +1,17 @@
-import requests
+"""
+This file contains all the elasticsearch functions.
+"""
+
+"""Importing Elasticsearch libraries
+"""
 from elasticsearch import Elasticsearch as elasticSearch
 from elasticsearch import ElasticsearchException as elasticException
-import json
+
+"""
+impotting dateTime library
+"""
 import datetime
 
-res = requests.get('http://localhost:9200')
 
 es = elasticSearch([{'host': 'localhost', 'port': 9200}])
 
@@ -20,6 +27,9 @@ db_urlDatasetPath = "url_dataset_path"
 db_apiType = "api_type"
 index = 'csv_data'
 
+"""
+Elasticsearch mapping
+"""
 mapping = {
     "mappings": {
         "data_sets": {
@@ -62,7 +72,16 @@ mapping = {
     }
 }
 
+"""
+The insert data function.
+Function taks 4 parameters.
 
+dataset_info: information about the data set (data set name, uploaded person's name and data set source)
+dataset: The data set as a json object.
+headers: properties of the data set.
+is_api: This parameter is for check whether the dataset is an api or not.
+
+"""
 def insert_data(dataset_info, dataset, headers, is_api):
     index_exsist = es.indices.exists(index)
 
@@ -96,6 +115,9 @@ def insert_data(dataset_info, dataset, headers, is_api):
         }
 
 
+"""
+This function is to insert api information to elaseticsearch
+"""
 def insert_api(dataset_info, is_api, url, data_path, api_type):
     index_exsist = es.indices.exists(index)
 
@@ -129,6 +151,8 @@ def insert_api(dataset_info, is_api, url, data_path, api_type):
         }
 
 
+"""
+This function is to get data set from the data set ID."""
 def get_dataset(dataset_name):
     index_exsist = es.indices.exists(index)
 
@@ -143,6 +167,8 @@ def get_dataset(dataset_name):
             return {}
 
 
+"""
+The function is to delete data set from elasticsearch by data set id. """
 def delete_dataset(dataset_name):
     index_exsist = es.indices.exists(index)
 
@@ -167,6 +193,7 @@ def delete_dataset(dataset_name):
             }
 
 
+"""the funciton is to do a search query in elasticsearch by a search term. """
 def search_dataset(search_term):
     index_exsist = es.indices.exists(index)
 
@@ -198,6 +225,8 @@ def search_dataset(search_term):
         return []
 
 
+"""
+this function is to get all the elastic data sets."""
 def get_all_datasets():
     index_exsist = es.indices.exists(index)
 
