@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+.DS_Store
+.gitignore
+.idea/workspace.xml
+.python-version
+connections/__init__.pyc
+connections/api_call.pyc
+connections/elastic.pyc
+readers/.DS_Store
+readers/PDF.pyc
+readers/__init__.pyc
+static/.DS_Store
+templates/
